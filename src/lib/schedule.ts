@@ -1,8 +1,12 @@
 import { load } from 'cheerio';
+import { parseRaceDates } from './race-dates.mjs';
 
 export const scheduleUrl = 'https://24hoursoflemons.com/schedule/';
 
 export interface RaceEvent {
+  id: string;
+  startDate: string;
+  endDate: string;
   name: string;
   venue: string;
   dates: string;
@@ -27,6 +31,8 @@ export function parseSchedule(html: string): RaceEvent[] {
       .map((node) => document(node).text().trim())
       .filter(Boolean);
     const event = {
+      id: new URL(url).searchParams.get('id')!,
+      ...parseRaceDates(dateParts[0] ?? ''),
       name: headings.eq(1).text().trim(),
       venue: headings.eq(0).text().trim(),
       dates: dateParts[0] ?? '',

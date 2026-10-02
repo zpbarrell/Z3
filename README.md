@@ -81,6 +81,40 @@ Page text lives in `src/content/pages/`. Public photos live in `public/images/`.
 The schedule is fetched from the official Lemons site at build time; deployed
 dates refresh on rebuild. A fetch failure publishes an official-source fallback.
 
+## Schedule Map
+
+The Schedule uses locally bundled US state boundaries (`us-atlas`) and a D3
+Albers USA projection, with no external map tiles or geocoding requests.
+Only races starting in 2027 or later are included. Completed races are hidden.
+Each event has its own marker; races sharing a track are offset slightly.
+Locations are approximate, not navigation directions. On narrow screens, the
+map can scroll horizontally; the event list also opens the same detail panel.
+
+Edit `src/data/team-events.json` to choose team races. Add the event ID from the
+official event URL (`race/?id=463`, for example) to `selectedEventIds`:
+
+```json
+{ "selectedEventIds": ["463"] }
+```
+
+This is an example, not a confirmed team entry. The manual selection list starts
+empty. `preferredRadius` automatically stars all events within 250 straight-line
+miles of central Indianapolis, IN, using approximate track coordinates and
+great-circle distance, not driving mileage. Edit its center or `miles` to change
+the preference area. Stars indicate team preferences, not confirmed entries.
+Preferred events use stars. Events starting within 30 calendar days use red pins
+or red stars. Countdown dates use each track's local timezone, refresh every
+minute and on tab activation, and do not require a redeploy to change color.
+New official event dates still require rebuilding the static site.
+
+Edit `src/data/tracks.json` for course coordinates, timezone, description, and
+the official source URL. Descriptions are optional; unavailable notes are stated
+explicitly. Add verified facts about turns, elevation, surface, and layout here.
+General course notes do not guarantee the race's specific layout. New tracks
+without coordinates fail the build rather than silently disappear from the map.
+
+Run `npm run test` (`npm.cmd run test` in PowerShell) for map and date tests.
+
 ## Cloudflare Pages Setup
 
 1. Sign in at https://dash.cloudflare.com/.

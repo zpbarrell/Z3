@@ -61,6 +61,32 @@
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "build"
+		},
+		{
+			"label": "Test schedule map",
+			"type": "shell",
+			"command": "npx.cmd",
+			"args": [
+				"--yes",
+				"tsx",
+				"--test",
+				"tests/race-dates.test.mjs",
+				"tests/schedule-map.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Check Astro types",
+			"type": "shell",
+			"command": "npm.cmd",
+			"args": [
+				"run",
+				"check"
+			],
+			"isBackground": false,
+			"problemMatcher": []
 		}
 	]
 }

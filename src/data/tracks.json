@@ -1,0 +1,22 @@
+[
+  { "name": "Barber Motorsports Park", "latitude": 33.532, "longitude": -86.619, "timeZone": "America/Chicago", "description": "A 2.38-mile, 17-turn road course with elevation changes, designed by Alan Wilson. Confirm the event's specific configuration with the organizer.", "source": "https://barberracingevents.com/about-the-park/" },
+  { "name": "NOLA Motorsports Park", "latitude": 29.887, "longitude": -90.278, "timeZone": "America/Chicago", "description": null, "source": "https://nolamotor.com/" },
+  { "name": "Mid-Ohio Sports Car Course", "latitude": 40.689, "longitude": -82.635, "timeZone": "America/New_York", "description": null, "source": "https://midohio.com/" },
+  { "name": "Sonoma Raceway", "latitude": 38.161, "longitude": -122.455, "timeZone": "America/Los_Angeles", "description": null, "source": "https://www.sonomaraceway.com/" },
+  { "name": "Carolina Motorsports Park", "latitude": 34.488, "longitude": -80.596, "timeZone": "America/New_York", "description": null, "source": "https://carolinamotorsportspark.com/" },
+  { "name": "Pacific Raceways", "latitude": 47.321, "longitude": -122.146, "timeZone": "America/Los_Angeles", "description": null, "source": "https://pacificraceways.com/" },
+  { "name": "Road America", "latitude": 43.798, "longitude": -87.989, "timeZone": "America/Chicago", "description": null, "source": "https://www.roadamerica.com/" },
+  { "name": "Hallett Motor Racing Circuit", "latitude": 36.222, "longitude": -96.59, "timeZone": "America/Chicago", "description": null, "source": "https://www.hallettracing.net/" },
+  { "name": "Thunderhill Raceway Park", "latitude": 39.54, "longitude": -122.332, "timeZone": "America/Los_Angeles", "description": null, "source": "https://thunderhill.com/" },
+  { "name": "New Jersey Motorsports Park", "latitude": 39.359, "longitude": -75.061, "timeZone": "America/New_York", "description": null, "source": "https://njmp.com/" },
+  { "name": "High Plains Raceway", "latitude": 39.737, "longitude": -103.894, "timeZone": "America/Denver", "description": null, "source": "https://www.highplainsraceway.com/" },
+  { "name": "Autobahn Country Club", "latitude": 41.453, "longitude": -88.126, "timeZone": "America/Chicago", "description": null, "source": "https://autobahncc.com/" },
+  { "name": "Thompson Speedway Motorsports Park", "latitude": 41.982, "longitude": -71.825, "timeZone": "America/New_York", "description": null, "source": "https://www.thompsonspeedway.com/" },
+  { "name": "GingerMan Raceway", "latitude": 42.408, "longitude": -86.15, "timeZone": "America/New_York", "description": null, "source": "https://www.gingermanraceway.com/" },
+  { "name": "NCM Motorsports Park", "latitude": 37.001, "longitude": -86.374, "timeZone": "America/Chicago", "description": "A 3.2-mile, 23-turn road course. Confirm the event's specific configuration with the organizer.", "source": "https://www.motorsportspark.org/" },
+  { "name": "Buttonwillow Raceway Park", "latitude": 35.489, "longitude": -119.544, "timeZone": "America/Los_Angeles", "description": null, "source": "https://buttonwillowraceway.com/" },
+  { "name": "New Hampshire Motor Speedway", "latitude": 43.362, "longitude": -71.46, "timeZone": "America/New_York", "description": null, "source": "https://www.nhms.com/" },
+  { "name": "Summit Point Motorsports Park", "latitude": 39.243, "longitude": -77.975, "timeZone": "America/New_York", "description": null, "source": "https://summitpointmotorsportspark.com/" },
+  { "name": "MSR Houston", "latitude": 29.277, "longitude": -95.425, "timeZone": "America/Chicago", "description": null, "source": "https://msrhouston.com/" },
+  { "name": "Road Atlanta", "latitude": 34.151, "longitude": -83.813, "timeZone": "America/New_York", "description": null, "source": "https://www.roadatlanta.com/" }
+]

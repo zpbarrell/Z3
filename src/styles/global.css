@@ -53,6 +53,34 @@ h1 { font-family: var(--font-display); font-size: 52px; line-height: 1.08; font-
 .page-body { padding-top: 32px; }
 .schedule-source { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--muted); }
 .schedule-source a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--accent); }
+.map-legend { display: flex; flex-wrap: wrap; gap: 16px; padding-block: 16px; font-size: 12px; color: var(--accent); }
+.map-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.map-legend .legend-soon { color: #ff8585; }
+.race-map-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+.race-map { position: relative; min-width: 760px; aspect-ratio: 8 / 5; }
+.us-map { width: 100%; height: 100%; display: block; }
+.us-states { fill: #2d3238; stroke: #69717b; stroke-width: 0.8; }
+.marker-leader { stroke: var(--accent); stroke-width: 1; }
+.race-marker { position: absolute; transform: translate(-50%, -50%); width: 36px; height: 36px; display: grid; place-items: center; padding: 0; background: var(--paper); border: 1px solid var(--line); border-radius: 50%; color: var(--accent); cursor: pointer; }
+.race-marker[data-team-selected='false'] .star-icon, .race-marker[data-team-selected='true'] .pin-icon { display: none; }
+.race-marker[data-team-selected='true'] .star-icon { fill: currentColor; }
+.race-marker.is-soon { color: #ff8585; }
+.race-marker:hover, .race-marker[aria-pressed='true'] { outline: 2px solid currentColor; outline-offset: 2px; z-index: 2; }
+.race-marker[hidden], .race-event[hidden], .race-detail[hidden] { display: none; }
+.map-note { font-size: 11px; line-height: 1.7; color: var(--muted); }
+.race-detail { padding: 24px 0; border-block: 1px solid var(--line); margin-top: 24px; }
+.race-detail h2 { font-family: var(--font-display); font-size: 28px; font-weight: 500; line-height: 1.3; margin: 12px 0 20px; overflow-wrap: anywhere; }
+.race-detail dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px 20px; font-size: 14px; line-height: 1.7; }
+.race-detail dt { color: var(--muted); }
+.race-detail dd { margin: 0; overflow-wrap: anywhere; }
+.race-detail p { line-height: 1.8; max-width: 65ch; }
+.race-detail-links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.race-detail-links a { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; color: var(--accent); font-size: 13px; }
+.race-countdown { color: var(--accent); }
+.race-select { font: inherit; color: inherit; border: 0; background: transparent; padding: 0; display: inline-flex; gap: 12px; align-items: center; text-align: left; min-height: 44px; cursor: pointer; }
+.race-select:hover, .race-select[aria-pressed='true'] { color: var(--accent); }
+.race-select svg { flex-shrink: 0; }
+.race-details .race-official-link { font-size: 12px; color: var(--muted); text-decoration: underline; }
 .race-list { list-style: none; padding: 0; margin: 20px 0 0; border-top: 1px solid var(--line); }
 .race-event { padding: 24px 0; border-bottom: 1px solid var(--line); display: grid; gap: 16px; overflow-wrap: anywhere; }
 .race-date { display: grid; align-content: start; gap: 8px; font-size: 14px; }

@@ -1,6 +1,8 @@
 ---
-import { ArrowUpRight } from '@lucide/astro';
+import { ArrowUpRight, MapPin, Star } from '@lucide/astro';
 import { fetchSchedule, scheduleUrl, type RaceEvent } from '../lib/schedule';
+import { mapEvents, mapPath, mapWidth, mapHeight } from '../lib/schedule-map';
+import { raceStatus } from '../lib/race-dates.mjs';
 
 let events: RaceEvent[] = [];
 let updatedAt = '';
@@ -11,27 +13,69 @@ try {
 } catch (error) {
   console.warn('Unable to load Lemons schedule:', error);
 }
+const races = mapEvents(events).filter((event) => !raceStatus(event).ended);
 ---
 
-<section class="race-schedule" aria-label="24 Hours of Lemons race schedule">
+<section class="race-schedule" aria-label="24 Hours of Lemons race schedule" data-schedule-map>
+  <script type="application/json" data-race-data set:html={JSON.stringify(races).replace(/</g, '\\u003c')} />
   <div class="schedule-source">
     <a href={scheduleUrl}>Official Lemons schedule <ArrowUpRight size={16} aria-hidden="true" /></a>
     {updatedAt && <span>Updated <time datetime={updatedAt}>{new Date(updatedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}</time></span>}
   </div>
-  {events.length ? (
+  {races.length ? (<>
+    <div class="map-legend" aria-label="Map legend">
+      <span><MapPin size={18} aria-hidden="true" /> Race</span>
+      <span><Star size={18} aria-hidden="true" /> Team preference</span>
+      <span class="legend-soon"><MapPin size={18} aria-hidden="true" /> Within 30 days</span>
+    </div>
+    <div class="race-map-scroll" tabindex="0" role="region" aria-label="US race map, horizontally scrollable on small screens">
+      <div class="race-map">
+        <svg class="us-map" viewBox={`0 0 ${mapWidth} ${mapHeight}`} aria-label="Map of the United States" role="img">
+          <path d={mapPath ?? ''} class="us-states" />
+          {races.map((event) => <line x1={event.trackX} y1={event.trackY} x2={event.x} y2={event.y} class="marker-leader" data-event-id={event.id} />)}
+        </svg>
+        {races.map((event) => {
+          const status = raceStatus(event);
+          return <button type="button" class:list={['race-marker', { 'is-soon': status.soon }]} data-event-id={event.id} data-team-selected={String(event.selected)} style={`left:${event.x / mapWidth * 100}%;top:${event.y / mapHeight * 100}%`} aria-label={`${event.name}, ${event.dates}${event.selected ? ', team preference' : ''}`} aria-controls="race-detail" aria-pressed="false" title={`${event.name} / ${event.dates}`}>
+            <MapPin class="pin-icon" size={24} aria-hidden="true" />
+            <Star class="star-icon" size={24} aria-hidden="true" />
+          </button>;
+        })}
+      </div>
+    </div>
+    <p class="map-note">Approximate track locations. Nearby events are offset; lines connect markers to their tracks.</p>
+    <section id="race-detail" class="race-detail" aria-labelledby="race-detail-title" hidden tabindex="-1">
+      <p class="race-countdown" data-detail-countdown></p>
+      <h2 id="race-detail-title"></h2>
+      <dl>
+        <dt>Date</dt><dd data-detail-date></dd>
+        <dt>Course</dt><dd data-detail-course></dd>
+        <dt>Entry deadline</dt><dd data-detail-deadline></dd>
+      </dl>
+      <p data-detail-description></p>
+      <div class="race-detail-links"><a data-detail-event>Official event details <ArrowUpRight size={16} aria-hidden="true" /></a><a data-detail-track>Track website <ArrowUpRight size={16} aria-hidden="true" /></a></div>
+    </section>
     <ul class="race-list">
-      {events.map((event) => (
-        <li class="race-event">
+      {races.map((event) => (
+        <li class="race-event" data-event-row={event.id}>
           <div class="race-date">
             <strong>{event.dates}</strong>
+            <span class="race-countdown" data-countdown={event.id}>{raceStatus(event).label}</span>
             <span>Entry deadline: {event.deadline}</span>
           </div>
           <div class="race-details">
-            <h2><a href={event.url}>{event.name}<ArrowUpRight size={18} aria-hidden="true" /></a></h2>
+            <h2><button class="race-select" type="button" data-event-id={event.id} aria-controls="race-detail" aria-pressed="false">{event.selected && <Star size={18} aria-label="Team preference" />}{event.name}<ArrowUpRight size={18} aria-hidden="true" /></button></h2>
             <p>{event.venue}</p>
+            <a href={event.url} class="race-official-link">Official event</a>
           </div>
         </li>
       ))}
     </ul>
-  ) : <p>The race schedule is temporarily unavailable. Please check the official schedule for current dates.</p>}
+  </>) : <p>{events.length ? 'No upcoming races from 2027 onward are currently listed.' : 'The race schedule is temporarily unavailable.'} Please check the official schedule for current dates.</p>}
+  <noscript><p>Interactive event details require JavaScript. Dates and official event links remain available in the list.</p></noscript>
 </section>
+
+<script>
+  import { initializeScheduleMap } from '../scripts/schedule-map';
+  document.querySelectorAll<HTMLElement>('[data-schedule-map]').forEach(initializeScheduleMap);
+</script>
