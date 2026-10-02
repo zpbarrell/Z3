@@ -107,7 +107,7 @@ export function initializeCarViewer(element: HTMLElement): () => void {
   resize();
   frame = requestAnimationFrame(animate);
 
-  new GLTFLoader().load('/models/1999_-_bmw_z3_-_cabriolet.glb', (gltf) => {
+  new GLTFLoader().load('/models/bmw-z3-cabriolet/car-web.glb', (gltf) => {
     if (!alive) {
       disposeModel(gltf.scene);
       return;
