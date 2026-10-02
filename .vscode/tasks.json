@@ -1,0 +1,54 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Astro development server",
+			"type": "shell",
+			"command": "npm.cmd",
+			"args": [
+				"run",
+				"dev",
+				"--",
+				"--host",
+				"127.0.0.1",
+				"--port",
+				"4321"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Preview updated Astro content",
+			"type": "shell",
+			"command": "npm.cmd",
+			"args": [
+				"run",
+				"dev",
+				"--",
+				"--host",
+				"127.0.0.1",
+				"--port",
+				"4322"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Restart Astro preview",
+			"type": "shell",
+			"command": "npm.cmd",
+			"args": [
+				"run",
+				"dev",
+				"--",
+				"--force",
+				"--host",
+				"127.0.0.1",
+				"--port",
+				"4321"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}

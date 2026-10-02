@@ -1,0 +1,37 @@
+---
+import { ArrowUpRight } from '@lucide/astro';
+import { fetchSchedule, scheduleUrl, type RaceEvent } from '../lib/schedule';
+
+let events: RaceEvent[] = [];
+let updatedAt = '';
+try {
+  const schedule = await fetchSchedule();
+  events = schedule.events;
+  updatedAt = schedule.updatedAt;
+} catch (error) {
+  console.warn('Unable to load Lemons schedule:', error);
+}
+---
+
+<section class="race-schedule" aria-label="24 Hours of Lemons race schedule">
+  <div class="schedule-source">
+    <a href={scheduleUrl}>Official Lemons schedule <ArrowUpRight size={16} aria-hidden="true" /></a>
+    {updatedAt && <span>Updated <time datetime={updatedAt}>{new Date(updatedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}</time></span>}
+  </div>
+  {events.length ? (
+    <ul class="race-list">
+      {events.map((event) => (
+        <li class="race-event">
+          <div class="race-date">
+            <strong>{event.dates}</strong>
+            <span>Entry deadline: {event.deadline}</span>
+          </div>
+          <div class="race-details">
+            <h2><a href={event.url}>{event.name}<ArrowUpRight size={18} aria-hidden="true" /></a></h2>
+            <p>{event.venue}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  ) : <p>The race schedule is temporarily unavailable. Please check the official schedule for current dates.</p>}
+</section>

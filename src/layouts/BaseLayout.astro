@@ -8,9 +8,10 @@ import { navigation, site } from '../data/site';
 interface Props {
   title: string;
   description: string;
+  showFooter?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, showFooter = true } = Astro.props;
 const pathname = Astro.url.pathname;
 const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
 ---
@@ -21,7 +22,7 @@ const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f7f8f6" />
+    <meta name="theme-color" content="#17191b" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{pageTitle}</title>
   </head>
@@ -53,12 +54,12 @@ const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
     <main id="main" class="site-main" tabindex="-1">
       <slot />
     </main>
-    <footer class="site-footer">
+    {showFooter && <footer class="site-footer">
       <div class="footer-inner">
         <a href="/" class="footer-brand" aria-label="z3 home"><Plus size={16} aria-hidden="true" />{site.name}</a>
         <span>{site.description}</span>
         <span class="footer-year">&copy; {new Date().getFullYear()} {site.name}</span>
       </div>
-    </footer>
+    </footer>}
   </body>
 </html>
