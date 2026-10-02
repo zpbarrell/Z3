@@ -1,0 +1,64 @@
+---
+import { Menu, Plus } from '@lucide/astro';
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/newsreader';
+import '../styles/global.css';
+import { navigation, site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const pathname = Astro.url.pathname;
+const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f7f8f6" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="/" aria-label="z3 home">z3<span aria-hidden="true">+</span></a>
+        <nav class="desktop-nav" aria-label="Main navigation">
+          {navigation.map((item) => (
+            <a href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>{item.label}</a>
+          ))}
+        </nav>
+        <details class="mobile-menu">
+          <summary aria-label="Toggle navigation" title="Navigation">
+            <Menu size={22} aria-hidden="true" />
+            <span>Menu</span>
+          </summary>
+          <nav aria-label="Mobile navigation">
+            {navigation.map((item) => (
+              <a href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>
+                <span class="nav-number">{item.number}</span>{item.label}
+              </a>
+            ))}
+          </nav>
+        </details>
+      </div>
+    </header>
+    <main id="main" class="site-main" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a href="/" class="footer-brand" aria-label="z3 home"><Plus size={16} aria-hidden="true" />{site.name}</a>
+        <span>{site.description}</span>
+        <span class="footer-year">&copy; {new Date().getFullYear()} {site.name}</span>
+      </div>
+    </footer>
+  </body>
+</html>
