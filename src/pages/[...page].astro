@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import { ArrowUpRight } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import RaceSchedule from '../components/RaceSchedule.astro';
+import CarViewer from '../components/CarViewer.astro';
 import { navigation } from '../data/site';
 
 export async function getStaticPaths() {
@@ -19,8 +20,8 @@ const isHome = entry.id === 'home';
 const current = navigation.find((item) => item.href === Astro.url.pathname);
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description} showFooter={!isHome}>
-  {isHome && <div class="home-media"><Content /></div>}
+<BaseLayout title={entry.data.title} description={entry.data.description} showFooter={!isHome} fullWidth={isHome}>
+  {isHome && <><CarViewer /><noscript><div class="home-media"><Content /></div></noscript></>}
   {!isHome && <>
   <div class="page-heading">
     <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>{current?.number ?? '01'} / {entry.data.title}</p>

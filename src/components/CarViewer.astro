@@ -1,0 +1,38 @@
+---
+import { Pause, Play, RotateCcw } from '@lucide/astro';
+---
+
+<car-viewer class="car-viewer" data-state="loading">
+  <div class="car-stage" aria-label="Interactive BMW Z3 Cabriolet model"></div>
+  <p class="car-status" role="status">Loading car...</p>
+  <div class="car-controls" hidden>
+    <button type="button" data-action="rotate" aria-label="Pause rotation" title="Pause rotation" aria-pressed="true">
+      <Pause class="pause-icon" size={20} aria-hidden="true" />
+      <Play class="play-icon" size={20} aria-hidden="true" />
+    </button>
+    <button type="button" data-action="reset" aria-label="Reset view" title="Reset view"><RotateCcw size={20} aria-hidden="true" /></button>
+  </div>
+  <p class="model-credit">
+    <a href="https://sketchfab.com/3d-models/1999-bmw-z3-cabriolet-37a12cf05b604bba8f06706bb3cd9b02">1999 BMW Z3</a>
+    by <a href="https://sketchfab.com/vrchris">pancakesbassoondonut</a>
+    / <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+  </p>
+</car-viewer>
+
+<script>
+  import { initializeCarViewer } from '../scripts/car-viewer';
+
+  class CarViewer extends HTMLElement {
+    cleanup?: () => void;
+
+    connectedCallback() {
+      this.cleanup = initializeCarViewer(this);
+    }
+
+    disconnectedCallback() {
+      this.cleanup?.();
+    }
+  }
+
+  if (!customElements.get('car-viewer')) customElements.define('car-viewer', CarViewer);
+</script>

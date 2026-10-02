@@ -9,9 +9,10 @@ interface Props {
   title: string;
   description: string;
   showFooter?: boolean;
+  fullWidth?: boolean;
 }
 
-const { title, description, showFooter = true } = Astro.props;
+const { title, description, showFooter = true, fullWidth = false } = Astro.props;
 const pathname = Astro.url.pathname;
 const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
 ---
@@ -51,7 +52,7 @@ const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
         </details>
       </div>
     </header>
-    <main id="main" class="site-main" tabindex="-1">
+    <main id="main" class:list={['site-main', { 'site-main-full': fullWidth }]} tabindex="-1">
       <slot />
     </main>
     {showFooter && <footer class="site-footer">
