@@ -13,19 +13,26 @@ description: A little background.
 
 ### Travis Bannon
 
+![Travis Bannon](/images/about/405eb358-f84e-49fb-aaab-a0921f00e492.png)
+
 <div class="image-placeholder" role="img" aria-label="Travis Bannon photo placeholder">Photo coming soon</div>
 
-### Tyrone Combs
+### Ty Combs
 
-<div class="image-placeholder" role="img" aria-label="Tyrone Combs photo placeholder">Photo coming soon</div>
+![Ty Combs](/images/about/285cdb2e-89fa-4978-a838-fecee7809571.png)
+
+
 
 ### Tyler Schultz
 
-<div class="image-placeholder" role="img" aria-label="Tyler Schultz photo placeholder">Photo coming soon</div>
+![Tyler Schultz](/images/about/616dbb49-8aff-43c0-a320-9ff55f3710de.png)
+
+
 
 ### Kyle Williams
 
-<div class="image-placeholder" role="img" aria-label="Kyle Williams photo placeholder">Photo coming soon</div>
+![Kyle Williams](/images/about/b912bb7c-6006-441f-8187-0e5ed026715c.png)
+
 
 ### Zack Barrell
 
