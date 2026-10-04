@@ -6,6 +6,7 @@ export const site = {
 export const navigation = [
   { label: 'Home', href: '/', number: '01' },
   { label: 'About', href: '/about/', number: '02' },
-  { label: 'Schedule', href: '/schedule/', number: '03' },
-  { label: 'Support Us', href: '/support-us/', number: '04' },
+  { label: 'The Car', href: '/car/', number: '03' },
+  { label: 'Schedule', href: '/schedule/', number: '04' },
+  { label: 'Support Us', href: '/support-us/', number: '05' },
 ];

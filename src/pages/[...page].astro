@@ -29,7 +29,7 @@ const current = navigation.find((item) => item.href === Astro.url.pathname);
     <p class="page-description">{entry.data.description}</p>
   </div>
   <div class="page-body">
-    <article class="prose" aria-label={`${entry.data.title} content`}>
+    <article class:list={['prose', { 'car-page': entry.id === 'car' }]} aria-label={`${entry.data.title} content`}>
       <Content />
     </article>
     {entry.id === 'schedule' && <RaceSchedule />}

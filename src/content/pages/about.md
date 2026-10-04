@@ -3,19 +3,12 @@ title: Goldenrod Racing
 description: A little background.
 ---
 
-## The Car
-
-### BMW Z3
-
-![BMW Z3 race car](/images/about/c1b6783f-0ba3-4c39-bf3d-30e6deb7628e.jfif)
-
 ## The Team
 
 ### Travis Bannon
 
 ![Travis Bannon](/images/about/405eb358-f84e-49fb-aaab-a0921f00e492.png)
 
-<div class="image-placeholder" role="img" aria-label="Travis Bannon photo placeholder">Photo coming soon</div>
 
 ### Ty Combs
 
